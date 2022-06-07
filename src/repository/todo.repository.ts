@@ -29,7 +29,7 @@ export class TodoRepository {
 
   async findActivity(activity_group_Id: any): Promise<Todo[]> {
     return await this.repository.find({
-      where: { activityGroupId: activity_group_Id }
+      where: { activity_group_id: activity_group_Id }
     })
   }
   async delete(id: number){

@@ -8,13 +8,13 @@ export class Todo {
     id: number
 
     @Column({ name: 'activity_group_id'})
-    activityGroupId: number 
+    activity_group_id: number 
 
     @Column()
     title: string
 
-    @Column({ name: 'is_active' })
-    isActive: boolean
+    @Column({ name: 'is_active', default: true })
+    is_active: boolean
     
     @Column({
         type: "enum",
@@ -24,11 +24,11 @@ export class Todo {
     priority: priorityEnum
 
     @CreateDateColumn({ name: "created_at"})
-    createdAt: Date
+    created_at: Date
 
     @UpdateDateColumn({ name: "updated_at" })
-    updatedAt: Date
+    updated_at: Date
 
     @DeleteDateColumn({ name: 'deleted_at',  nullable: true, default: null })
-    deletedAt: Date
+    deleted_at: Date
 }

@@ -47,7 +47,7 @@ export class activityGroupsController {
         const activity = new Activity()
         activity.email = email
         activity.title = title
-        activity.deletedAt = null
+        activity.deleted_at = null
         let save = await this.activityRepository.add(activity)
         if (!save) {
             return res.status(400).json({

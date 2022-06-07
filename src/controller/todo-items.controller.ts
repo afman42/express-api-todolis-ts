@@ -55,10 +55,10 @@ export class todoItemsController {
             })
         }
         const todo = new Todo()
-        todo.activityGroupId = activity_group_id
+        todo.activity_group_id = activity_group_id
         todo.title = title
-        todo.deletedAt = null
-        todo.isActive = true
+        todo.deleted_at = null
+        todo.is_active = true
         todo.priority = priorityEnum.VERY_HIGH
         // let save = await todo.save()
         let save = await this.todoRepository.add(todo)
@@ -78,7 +78,7 @@ export class todoItemsController {
 
     async update(req: Request, res: Response) {
         let { id } = req.params
-        let { title, priority, is_active } = req.body
+        let { title, is_active } = req.body
         let model = await this.todoRepository.findOne(parseInt(id))
         if (!model) {
             return res.status(404).json({
@@ -88,8 +88,8 @@ export class todoItemsController {
             })
         }
         model.title = title
-        model.isActive = is_active
-        model.priority = priority
+        model.is_active = is_active
+        model.priority = priorityEnum.VERY_HIGH
 
         let save = await this.todoRepository.add(model)
         if (!save) {
@@ -99,10 +99,11 @@ export class todoItemsController {
                 data: {}
             })
         }
+        let findID = await this.todoRepository.findOne(parseInt(id))
         return res.json({
             status: "Success",
             message: "Success",
-            data: model
+            data: findID
         })
 
     }
